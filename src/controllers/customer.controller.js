@@ -55,19 +55,10 @@ const deleteCustomer = async (req, res) => {
   }
 };
 
-/**
- * Redirection URL
- * @param {*} req
- * @param {*} res
- */
-const redirectUrl = async (req, res)=>{
-  res.redirect('/api');
-}
 
 module.exports = {
   getCustomer,
   getCustomers,
   createCustomer,
   deleteCustomer,
-  redirectUrl,
 };
