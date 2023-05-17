@@ -55,7 +55,6 @@ const deleteCustomer = async (req, res) => {
   }
 };
 
-
 module.exports = {
   getCustomer,
   getCustomers,
