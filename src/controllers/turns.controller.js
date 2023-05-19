@@ -48,23 +48,34 @@ const getAllTurns = async (req, res) => {
  * @param {*} res
 */
 const createTurn = async (req, res) => {
-    const body=req.body;
-    const user= await customerModel.find({identificationNumber:{$eq:body.customer.identificationNumber}});
+    
+   const body=matchedData(req);
+   const user= await customerModel.find({identificationNumber:{$eq:body.identificationNumber}});
     const newUser={
-      name:body.customer.name,
-      surName:body.customer.surName,
-      identificationNumber:body.customer.identificationNumber,
-      mobilePhone:body.customer.mobilePhone,
+      name:body.name,
+      surName:body.surName,
+      identificationNumber:body.identificationNumber,
+      mobilePhone:body.mobilePhone,
     }
+    const newTurn={
+      timeSlot: body.timeSlot,
+      customer: {
+      customerId: body.customerId,
+      name:body.name,
+      surName:body.surName,
+      identificationNumber:body.identificationNumber,
+      mobilePhone:body.mobilePhone,
+    }
+  }
     try {
       if (!user.length) {
         await customerModel.create(newUser);
-        await customerModel.updateOne({identificationNumber:body.customer.identificationNumber},{turnHistory:[{registry:new Date(Date.now()).toISOString()}]});
-        await turnModel.create(body);
-        res.status(200).send("User and Turn created")
+        await customerModel.updateOne({identificationNumber:body.identificationNumber},{turnHistory:[{registry:new Date(Date.now()).toISOString()}]});
+        await turnModel.create(newTurn);
+        res.status(200).send("User and Turn created");
       }else{
-        await turnModel.create(body);
-        await customerModel.updateOne({identificationNumber:body.customer.identificationNumber},{$push:{turnHistory:[{registry:new Date(Date.now()).toISOString()}]}});
+        await turnModel.create(newTurn);
+        await customerModel.updateOne({identificationNumber:body.identificationNumber},{$push:{turnHistory:[{registry:new Date(Date.now()).toISOString()}]}});
         res.status(200).send("Turn created");
       }
     } catch (error) {

@@ -4,12 +4,12 @@ const validateResults = require('../utils/handleValidators');
 
 const validatorCreateTurn = [
 
-  check('date')
-  .exists()
-  .notEmpty(),
-  check('status')
-  .exists()
-  .notEmpty(),
+  // check('date')
+  // .exists()
+  // .notEmpty(),
+  // check('status')
+  // .exists()
+  // .notEmpty(),
   check('timeSlot')
   .exists()
   .notEmpty(),
