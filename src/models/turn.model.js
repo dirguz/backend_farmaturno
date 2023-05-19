@@ -15,27 +15,27 @@ const turnSchema = new mongoose.Schema(
       type: Number,
       require: true
     },
-    // customer: {
-    //   customerId: {
-    //     type: mongoose.Types.ObjectId
-    //   },
-    //   name: {
-    //     type: String
-    //   },
-    //   surName: {
-    //     type: String
-    //   },
-    //   identificationNumber: {
-    //     type: Number,
-    //     unique: true,
-    //     require: true
-    //   },
-    //   mobilePhone: {
-    //     type: Number,
-    //     unique: true,
-    //     require: true
-    //   }
-    // }
+    customer: {
+      customerId: {
+        type: mongoose.Types.ObjectId
+      },
+      name: {
+        type: String
+      },
+      surName: {
+        type: String
+      },
+      identificationNumber: {
+        type: Number,
+        // unique: true,
+        require: true
+      },
+      mobilePhone: {
+        type: Number,
+        // unique: true,
+        require: true
+      }
+    }
   },
   {
     timestamps: true,

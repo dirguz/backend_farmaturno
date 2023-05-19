@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 
 const CustomerSchema = new mongoose.Schema(
-
-
   {
     name: {
       type: String
@@ -36,4 +34,3 @@ const CustomerSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('customer', CustomerSchema);
-
