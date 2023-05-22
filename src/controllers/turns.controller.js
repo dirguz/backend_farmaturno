@@ -24,6 +24,28 @@ const getTurn = async (req, res) => {
 };
 
 /**
+ * Get Turn by user document
+ * @param {*} req
+ * @param {*} res
+*/
+const getTurnByDI = async (req, res) => {
+    
+    const doc = req.params.doc;
+    const find= await turnModel.find({"customer.identificationNumber":{$eq:doc}});
+    console.log(find);
+    try {
+      if (!find.length) {
+      handleHttpError(res, "Turns for document not found", 404, "getTurn");
+      return;
+     } else {
+      res.status(200).send(find);
+     }
+    } catch (error) {
+      handleHttpError(res, "Internal Server Error", 500, "getTurn", error);
+    }
+};
+
+/**
  * Get Turns from DataBase
  * @param {*} req
  * @param {*} res
@@ -103,5 +125,6 @@ const modifyTurn = async (req, res) => {
     getTurn,
     getAllTurns,
     createTurn,
-    modifyTurn
+    modifyTurn,
+    getTurnByDI
   };

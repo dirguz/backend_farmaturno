@@ -14,11 +14,6 @@ const CustomerSchema = new mongoose.Schema(
       unique: true,
       require: true
     },
-    mobilePhone: {
-      type: Number,
-      unique: true,
-      require: true
-    },
     turnHistory: [
       {
         registry: {

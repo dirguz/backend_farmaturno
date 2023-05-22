@@ -17,11 +17,7 @@ const validatorCreateCustomer = [
   .notEmpty()
   .isNumeric()
   .isLength({min: 6, max: 10}),
-  check('mobilePhone')
-  .exists()
-  .notEmpty()
-  .isNumeric()
-  .isLength({min: 10, max: 10}),
+ 
   
 
   (req, res, next) => {

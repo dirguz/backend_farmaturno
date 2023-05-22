@@ -115,37 +115,6 @@ const createCustomer = async (req, res) => {
 };
 
 /**
- * Updated customer in DataBase
- * @param {*} req
- * @param {*} res
- */
-const updateCustomer = async (req, res) => {
-  try {
-    req = matchedData(req);
-    const data = await customerModel.findOneAndUpdate(
-      { _id: req.id },
-      { mobilePhone: req.mobilePhone },
-      { new: true }
-      );
-    if (!data){
-      handleHttpError(res, "Customer Not Found", 404, "getCustomer");
-      return;
-    } else {
-      res
-        .json({
-          success: true,
-          message: "Customer Updated",
-          data: data
-        })
-        .status(200);
-      return;
-    }
-  } catch (error) {
-    handleHttpError(res, "Internal Server Error", 400, "updateCustomer", error);
-  }
-};
-
-/**
  * Delete customer from DataBase
  * @param {*} req
  * @param {*} res
@@ -179,6 +148,5 @@ module.exports = {
   getCustomerByIdentificationNumber,
   getCustomers,
   createCustomer,
-  updateCustomer,
   deleteCustomer,
 };
