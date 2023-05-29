@@ -1,18 +1,20 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
+
 
 const turnSchema = new mongoose.Schema(
 
   {
     date: {
-      type: Date,
-      default: Date.now
+      type: String,
+      default:moment().format('MMMM Do YYYY, h:mm:ss a')
     },
     status: {
       type: Boolean,
       default: true,
     },
     timeSlot: {
-      type: Number,
+      type: String,
       require: true
     },
     customer: {

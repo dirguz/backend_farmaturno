@@ -12,6 +12,7 @@ const validatorCreateTurn = [
   // .notEmpty(),
   check('timeSlot')
   .exists()
+  .isString()
   .notEmpty(),
   
 
