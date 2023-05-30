@@ -37,6 +37,7 @@ const loginMyPharmacy = async (req, res) => {
 
     //Send token as a response with status 200
     res.json({
+        companyName: data.companyName,
         token
     }).status(200);
 
