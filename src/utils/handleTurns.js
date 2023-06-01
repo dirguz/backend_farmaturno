@@ -35,10 +35,13 @@ const handleTurns = async () => {
         const filterTurn = turnSort.filter(t => {
             const hourSistem = parseInt(moment().format('HH'));
             const [hourA] = t.hour?.split(":").map(Number);
+            console.log('Hora Sistema '+ hourSistem);
+            console.log('Hora Turno ' + hourA);
             return hourA === (hourSistem + 1);
         });
         console.log(Colors.bgCyan.black(`==>>** Turns Loaded **`));
         handleSendEmail(filterTurn);
+        console.log(filterTurn);
     }
     
 };

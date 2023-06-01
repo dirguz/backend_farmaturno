@@ -40,7 +40,7 @@ function main(){
     scheduled: true,
     timezone: "America/Bogota"
   })
-  // handleTurns(); // Descomentar esta linea para que ejecute la funcion sin temporizador
+  handleTurns(); // Descomentar esta linea para que ejecute la funcion sin temporizador
 
   /**
    * Cron library that executes the function of restarting the Turn collection every day at 0 hours.
