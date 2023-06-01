@@ -3,7 +3,7 @@ const { matchedData } = require("express-validator");
 const { turnModel, customerModel } = require("../models");
 const moment = require('moment');
 const handleSendEmail = require("../utils/handleSendEmail");
-
+moment.tz.setDefault('America/Bogota');
 /**
  * Get Turn by id
  * @param {*} req

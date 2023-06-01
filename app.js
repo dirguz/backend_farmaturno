@@ -9,7 +9,7 @@ const routes = require('./src/routes');
 const { handleTurns } = require('./src/utils/handleTurns');
 const handleRestartDBTurn = require('./src/utils/handleRestartDBTurn');
 const moment = require('moment');
-
+moment.tz.setDefault('America/Bogota');
 
 
 const app = express();
