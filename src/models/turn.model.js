@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
-
+require('moment-timezone');
+moment.tz.setDefault('America/Bogota');
 
 const turnSchema = new mongoose.Schema(
 
@@ -31,8 +32,8 @@ const turnSchema = new mongoose.Schema(
         type: Number,
         require: true
       },
-      mobilePhone: {
-        type: Number,
+      customerEmail: {
+        type: String,
         require: true
       }
     }

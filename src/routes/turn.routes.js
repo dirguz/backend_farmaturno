@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const {getTurn, getAllTurns, createTurn, modifyTurn, getTurnByDI, getTurnByHour} = require("../controllers/turns.controller");
-const {validatorCreateCustomer, validatorCreateTurn, validatorPhoneNumber} = require('../validators')
+const {validatorCreateCustomer, validatorCreateTurn, validatorEmail} = require('../validators')
 
 /**
  * Get Turn by Id
@@ -26,7 +26,7 @@ router.get('/', getAllTurns);
 /**
  * Create Turn in DB
  */
-router.post('/',validatorCreateCustomer, validatorCreateTurn, validatorPhoneNumber, createTurn);
+router.post('/',validatorCreateCustomer, validatorCreateTurn, validatorEmail, createTurn);
 
 /**
  * modify Turn-status in DB

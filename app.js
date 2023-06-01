@@ -8,6 +8,7 @@ const cron = require('node-cron');
 const routes = require('./src/routes');
 const { handleTurns } = require('./src/utils/handleTurns');
 const handleRestartDBTurn = require('./src/utils/handleRestartDBTurn');
+const moment = require('moment');
 
 
 
@@ -27,6 +28,8 @@ function main(){
   })
   dbConnection();
 
+  console.log('Hora del sistema'+ new Date());
+  console.log('Hora de libreria' + moment().format('MMMM Do YYYY, h:mm:ss a'));
   /**
    * Cron library that executes the function of load all turns every hour.
   */
@@ -37,7 +40,7 @@ function main(){
     scheduled: true,
     timezone: "America/Bogota"
   })
-  // handleTurns(); // Descomentar esta linea para que ejecute la funcion sin temporizador
+  //handleTurns(); // Descomentar esta linea para que ejecute la funcion sin temporizador
 
   /**
    * Cron library that executes the function of restarting the Turn collection every day at 0 hours.
