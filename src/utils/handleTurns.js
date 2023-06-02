@@ -43,8 +43,8 @@ const handleTurns = async (cont) => {
         });
         
         console.log(Colors.bgCyan.black(`==>>** Turns Loaded **`));
-        // handleSendEmail(filterTurn);
-        console.log(filterTurn);
+        handleSendEmail(filterTurn);
+        // console.log(filterTurn);
     }
     
 };
