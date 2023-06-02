@@ -2,15 +2,18 @@ const Colors = require('@colors/colors');
 const {turnModel} = require("../models");
 const handleSendEmail = require('./handleSendEmail');
 const moment = require('moment');
-require('moment-timezone');
-moment.tz.setDefault('America/Bogota');
+const { hourFormat } = require('./handleDate');
+const { minHour } = require('./handleSortArray');
 
-const handleTurns = async () => {
+
+const handleTurns = async (cont) => {
     const turns = await turnModel.find({});
     if(!turns.length){
         console.log(Colors.bgWhite.black(`==>>** Not Turns in DB **`));
     }else{
-        const data = [];
+        const hourS = hourFormat();
+        const data = [{hour: "07:00"}];
+
         turns.forEach(a => {
             data.push({
                 _id: a._id,
@@ -22,6 +25,7 @@ const handleTurns = async () => {
             return data;
         });
         
+        const min = minHour(data); //hora del primer turno
         const turnSort = data.sort((a, b) =>{
             const [hourA, minA] = a.hour?.split(":").map(Number);
             const [hourB, minB] = b.hour?.split(":").map(Number);
@@ -33,12 +37,14 @@ const handleTurns = async () => {
         });
 
         const filterTurn = turnSort.filter(t => {
-            const hourSistem = parseInt(moment().format('HH'));
+            const hourSistem = min.split(":").map(Number)[0] + cont;
             const [hourA] = t.hour?.split(":").map(Number);
-            return hourA === (hourSistem + 2);
+            return hourA == hourSistem;
         });
+        
         console.log(Colors.bgCyan.black(`==>>** Turns Loaded **`));
-        handleSendEmail(filterTurn);
+        // handleSendEmail(filterTurn);
+        console.log(filterTurn);
     }
     
 };

@@ -57,8 +57,38 @@ const createPharmacy = async (req, res) => {
   }
 }
 
+/**
+ * Update Pharmacy password in DB
+ * @param {*} req 
+ * @param {*} res 
+ */
+const updatePharmacyPassword = async (req, res) => {
+
+  try {
+    const filter = { email: req.body.email };
+    const hash = await bcrypt.hash(req.body.password, 10);
+    const update = { password: hash };
+
+    const result = await pharmacyModel.findOneAndUpdate(filter, update);
+
+    if (!result){
+      handleHttpError(res, "Could not update password", 400, "updatePharmacyPassword");
+      return;
+    }
+    res
+      .json({
+        success: true,
+        message: "Password Updated"
+      })
+      .status(200);
+    
+  } catch (error) {
+    handleHttpError(res, "Internal Server Error", 500, "updatePharmacyPassword", error);
+  }
+}
 
 module.exports = {
   createPharmacy,
   getMyPharmacy,
+  updatePharmacyPassword
 }

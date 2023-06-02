@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const {validatorCreatePharmacy} = require('../validators');
 
-const {getMyPharmacy, createPharmacy} = require('../controllers/pharmacy.controller');
+const {getMyPharmacy, createPharmacy, updatePharmacyPassword} = require('../controllers/pharmacy.controller');
 const verificateToken = require('../middlewares/token.middleware');
 
 const router = Router();
@@ -17,6 +17,7 @@ router.get('/:pharmacyName', verificateToken, getMyPharmacy);
  */
 router.post('/',validatorCreatePharmacy, createPharmacy);
 
+router.put('/', updatePharmacyPassword);
 
 
 
