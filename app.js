@@ -8,7 +8,6 @@ const cron = require('node-cron');
 const routes = require('./src/routes');
 const { handleTurns } = require('./src/utils/handleTurns');
 const handleRestartDBTurn = require('./src/utils/handleRestartDBTurn');
-const { dateFormat, hourFormat } = require('./src/utils/handleDate');
 
 
 
@@ -23,31 +22,23 @@ routes(app);
 
 function main(){
 
-  // console.log('hora actual--', Date())
-  // console.log('hora moment--', moment().format('MMMM Do YYYY, h:mm:ss a'))
-
-  const a = dateFormat();
-  const b = hourFormat();
-
-  console.log('Esta es la fecha modificada ' + a);
-  console.log('Esta es la hora modificada ' + b);
 
   app.listen(PORT, () => {
     console.log(Colors.bgGreen.black(`==>> Server is running on ${URL}:${PORT} `));
   })
   dbConnection();
-  let cont = 1;
-  /**
-   * Cron library that executes the function of load all turns every hour. 59 06-18
-  */
-  cron.schedule('59 06-18 * * *', async () => {
-   await handleTurns(cont);
-   cont = cont + 1;
-  },
-  {
-    scheduled: true,
-    timezone: "America/Bogota"
-  })
+  // let cont = 1;
+  // /**
+  //  * Cron library that executes the function of load all turns every hour. 59 06-18
+  // */
+  // cron.schedule('59 06-18 * * *', async () => {
+  //  await handleTurns(cont);
+  //  cont = cont + 1;
+  // },
+  // {
+  //   scheduled: true,
+  //   timezone: "America/Bogota"
+  // })
   //handleTurns(); // Descomentar esta linea para que ejecute la funcion sin temporizador
   
   /**
@@ -56,7 +47,7 @@ function main(){
   cron.schedule('59 59 23 * * *', async () => {
     console.log(Colors.cyan('==>> Restarting Turn collection'))
     await handleRestartDBTurn()
-    cont = 1;
+    //cont = 1;
   },
   {
     scheduled: true,
