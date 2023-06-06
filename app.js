@@ -19,9 +19,9 @@ const URL = process.env.URL_SERVER || 'http://localhost';
 const whiteListUrl1 = process.env.WHILE_LIST1;
 const whiteListUrl2 = process.env.WHILE_LIST2;
 
-const whiteList = [whiteListUrl1,whiteListUrl2]
+//const whiteList = [whiteListUrl1,whiteListUrl2]
 
-app.use(cors({origin: whiteList}));
+app.use(cors({origin: whiteListUrl1 || whiteListUrl2 }));
 // app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
