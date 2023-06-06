@@ -17,6 +17,7 @@ const URL = process.env.URL_SERVER || 'http://localhost';
 
 
 const whiteList = process.env.WHILE_LIST.split(",");
+
 app.use(cors({origin: whiteList}));
 // app.use(cors());
 app.use(express.json());
@@ -30,6 +31,7 @@ function main(){
     console.log(Colors.bgGreen.black(`==>> Server is running on ${URL}:${PORT} `));
   })
   dbConnection();
+  console.log(whiteList);
   // let cont = 1;
   // /**
   //  * Cron library that executes the function of load all turns every hour. 59 06-18
