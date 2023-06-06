@@ -1,7 +1,6 @@
 const Colors = require('@colors/colors');
 const {turnModel} = require("../models");
 const handleSendEmail = require('./handleSendEmail');
-const moment = require('moment');
 const { hourFormat } = require('./handleDate');
 const { minHour } = require('./handleSortArray');
 
@@ -44,7 +43,7 @@ const handleTurns = async (cont) => {
         
         console.log(Colors.bgCyan.black(`==>>** Turns Loaded **`));
         handleSendEmail(filterTurn);
-        // console.log(filterTurn);
+    
     }
     
 };
